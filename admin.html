@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mural Tech SENAI</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <!-- Modal de Administração Centralizado em Tabela -->
+  <div class="modal" id="adminModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeAdminPanel()">&times;</span>
+        <h3>Adicionar Novo Item</h3>
+        <form id="adminForm" onsubmit="addNewItem(event)">
+            <table>
+                <tr>
+                    <td><label for="itemType">Tipo:</label></td>
+                    <td>
+                        <select id="itemType" required onchange="toggleGroupSelection()">
+                            <option value="feed">Feed</option>
+                            <option value="comunicado">Comunicado</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr id="groupRow" style="display: none;">
+                    <td><label for="itemGroup">Grupo para Comunicado:</label></td>
+                    <td>
+                        <select id="itemGroup">
+                            <option value="DOCENTES">Docentes</option>
+                            <option value="SETORES">Setores</option>
+                            <option value="SENAI">Senai</option>
+                            <option value="GERAIS">Gerais</option>
+                        </select>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><label for="tempGroupName">Nome do Grupo Temporário (Opcional):</label></td>
+                    <td><input type="text" id="tempGroupName" placeholder="Nome do grupo temporário"></td>
+                </tr>
+
+                <tr>
+                    <td><label for="tempGroupDuration">Duração do Grupo Temporário (dias):</label></td>
+                    <td><input type="number" id="tempGroupDuration" min="1" placeholder="Duração em dias"></td>
+                </tr>
+
+                <tr>
+                    <td><label for="itemDescription">Descrição:</label></td>
+                    <td><input type="text" id="itemDescription" placeholder="Descrição do item" required></td>
+                </tr>
+
+                <tr>
+                    <td><label for="imageType">Imagem ou Link:</label></td>
+                    <td>
+                        <select id="imageType" onchange="toggleImageInput()" required>
+                            <option value="link">Link</option>
+                            <option value="upload">Upload</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="liveVideoUrl">URL do Vídeo Ao Vivo:</label></td>
+                    <td><input type="url" id="liveVideoUrl" placeholder="Cole a URL do YouTube aqui"></td>
+                </tr>
+            
+                <tr id="imageUrlRow" style="display: block;">
+                    <td><label for="imageUrl">URL da Imagem:</label></td>
+                    <td><input type="url" id="imageUrl" placeholder="URL da imagem"></td>
+                </tr>
+
+                <tr id="imageFileRow" style="display: none;">
+                    <td><label for="imageFile">Upload da Imagem:</label></td>
+                    <td><input type="file" id="imageFile" accept="image/png, image/jpeg"></td>
+                </tr>
+
+                <tr>
+                    <td><label for="cacheDuration">Duração do Cache para o Item (dias):</label></td>
+                    <td><input type="number" id="cacheDuration" min="1" placeholder="Tempo de cache em dias" required></td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">Adicionar Feed</button>
+                        <button class="button" onclick="addLiveVideo()">Salvar Vídeo</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

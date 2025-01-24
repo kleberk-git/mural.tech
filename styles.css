@@ -1,0 +1,956 @@
+/* Estilos Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body, html {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: #1a1a2e;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+/* Estiliza o botão inicialmente escondido */
+.admin-container {
+    position: relative;
+    display: inline-block;
+    width: 200px; /* Ajuste conforme necessário */
+    height: 50px; /* Ajuste conforme necessário */
+    overflow: hidden;
+}
+
+.admin-button {
+    display: none; /* Oculto por padrão */
+    background-color: #e94560;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.admin-container:hover .admin-button {
+    display: block; /* Mostra o botão ao passar o mouse */
+    opacity: 1;
+    background-color: #f13050;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #1a1a2e;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    animation: slideIn 1.5s ease-out; /* Animação do carregamento */
+}
+
+/* Animação futurista no carregamento */
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(10%);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Footer dentro do Sidebar */
+.sidebar-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+}
+
+.sidebar-footer img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    opacity: 0;
+    position: absolute;
+    filter: drop-shadow(0 0 0.2px #00ffcc); /* Glow futurista */
+    animation: fadeIn 2s ease-out forwards, float 5s ease-in-out infinite; /* Entrada + Movimento */
+}
+
+/* Animação de entrada das imagens */
+@keyframes fadeIn {
+    0% {
+        transform: scale(0.5) rotateX(90deg);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.2) rotateX(-20deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotateX(0);
+        opacity: 1;
+    }
+}
+
+/* Movimento flutuante contínuo */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+ 
+/* Estilo básico da sidebar */
+.sidebar {
+    width: 250px; /* Largura quando expandida */
+    height: 100vh; /* Altura total da janela */
+    background-color: #f4f4f4;
+    border-right: 1px solid #ddd;
+    transition: all 0.3s ease; /* Transição suave para retrair/expandir */
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sidebar no estado colapsado */
+.sidebar.collapsed {
+    width: 50px; /* Largura reduzida */
+}
+
+/* Botão de título (☰ Início) */
+.sidebar h2 {
+    margin: 0;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #ddd;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Centralizar texto no estado colapsado */
+.sidebar.collapsed h2 {
+    text-align: center;
+}
+
+/* Lista de links */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Preencher o restante do espaço */
+}
+
+/* Estilo dos itens da lista */
+.sidebar ul li {
+    padding: 15px 20px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Links no estado colapsado */
+.sidebar.collapsed ul li {
+    text-align: center;
+    padding: 15px 10px;
+}
+
+/* Hover nos itens */
+.sidebar ul li:hover {
+    background-color: #e0e0e0;
+}
+
+/* Rodapé da sidebar */
+.sidebar-footer {
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+/* Imagem do rodapé */
+.sidebar-footer img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ajustes para o estado colapsado */
+.sidebar.collapsed .sidebar-footer img {
+    display: none; /* Ocultar imagem no rodapé quando colapsado */
+}
+
+
+.feed {
+    flex: 1;
+    padding: 20px;
+    background-color: #f5f5f5;
+    overflow-y: auto;
+   
+}
+
+.feed-post {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+
+
+.remove-button{
+    background-color: #c5344f;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+/* Estilo da postagem */
+.post {
+    position: relative;
+    background: linear-gradient(135deg, #f2f3f1, #ffffff); /* Fundo suave */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    display: flex; /* Usa flexbox */
+    flex-direction: column; /* Organiza os elementos em coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    width: 100%; /* Preenche a largura disponível */
+    height: auto; /* Ajusta a altura automaticamente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    text-align: center; /* Centraliza o conteúdo */
+    overflow: hidden; /* Garante que nada ultrapasse os limites */
+}
+
+/* Borda vertical à esquerda com gradiente */
+.post::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; /* Preenche toda a altura */
+    width: 4px; /* Espessura da borda */
+    background: linear-gradient(to bottom, #f7e94d, #4dc9f7); /* Gradiente vertical */
+    z-index: 1; /* Fica abaixo do conteúdo */
+}
+
+/* Texto "SENAI" no canto inferior direito */
+.post::after {
+    content: 'SENAI'; /* Texto no canto inferior direito */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #2F3B41; /* Fundo azul escuro */
+    color: white; /* Cor do texto */
+    font-size: 12px; /* Tamanho do texto */
+    font-weight: bold; /* Texto em negrito */
+    padding: 2px 8px; /* Espaçamento interno */
+    border-radius: 0 0 4px 4px; /* Bordas arredondadas */
+    z-index: 2; /* Fica acima da borda */
+}
+
+/* Estilo para imagens dentro do post */
+.post img {
+    max-width: 90%; /* Ajusta a largura máxima para caber na div */
+    max-height: 90%; /* Ajusta a altura máxima para caber na div */
+    object-fit: contain; /* Garante que a imagem seja ajustada proporcionalmente */
+    border-radius: 8px; /* Bordas arredondadas na imagem */
+    z-index: 2; /* Fica acima da borda */
+}
+
+/* Texto abaixo da imagem */
+.post .caption {
+    margin-top: 10px; /* Espaçamento entre a imagem e o texto */
+    font-size: 14px; /* Tamanho do texto */
+    color: #333; /* Cor do texto */
+    z-index: 2; /* Garante que fique acima da borda */
+}
+
+
+
+
+/* Ajuste para telas maiores */
+@media (min-width: 768px) {
+    .post img {
+        max-width: 80%; /* Ocupa 80% da largura do contêiner em telas maiores */
+    }
+}
+
+@media (min-width: 1200px) {
+    .post img {
+        max-width: 70%; /* Ocupa 70% da largura em telas muito grandes */
+    }
+}
+
+
+.delete-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Botão de lixeira oculto por padrão */
+.delete-button {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: none; /* Oculto inicialmente */
+}
+
+/* Contêiner que exibe o botão ao passar o mouse */
+.post:hover .delete-button {
+    display: inline; /* Mostra o botão quando o mouse está sobre o post */
+}
+
+
+.active {
+    background-color: #e94560; /* Destaque para o grupo ativo */
+}
+
+/* Estilo para a barra de rolagem */
+.feed-post::-webkit-scrollbar {
+    width: 8px;
+}
+
+.feed-post::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.feed-post::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+
+.like-button {
+    background: transparent;
+    border: none;
+    color: #e94560;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.like-button:hover {
+    transform: scale(1.1);
+}
+
+/* Modal de Administração Centralizado e Justificado */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 650px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: justify;
+}
+
+.modal-content label {
+    font-weight: bold;
+    color: #1a1a2e;
+}
+
+.modal-content input,
+.modal-content select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: #e94560;
+}
+
+.modal-content button[type="submit"] {
+    padding: 12px;
+    font-size: 1em;
+    color: white;
+    background-color: #e94560;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #c5344f;
+}
+
+/* Tela Cheia Overlay para Comunicados */
+.fullscreen-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
+.fullscreen-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullscreen-content img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* Modal Container */
+.fullscreen-overlay-voce {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente */
+    z-index: 9999; /* Certifique-se de que está acima de outros elementos */
+}
+
+/* Conteúdo do Modal */
+.fullscreen-content-voce {
+    position: relative;
+    background-color: #1a1a2e;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fullscreen-content-voce {
+    background: #1e1e2f; /* Fundo escuro elegante */
+    border-radius: 12px;
+    padding: 20px 40px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 800px;
+    width: 90%;
+    animation: slideUp 0.4s ease-in-out;
+}
+
+/* Título */
+#telaTitle {
+    color: #ffcc00; /* Amarelo chamativo */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Subtítulo */
+#telaSubtitle {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Container do QR Code */
+.qrcode-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+    width: fit-content;
+    margin: 0 auto;
+}
+
+/* Botão de Fechar */
+.close-live-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.close-live-button:hover {
+    transform: scale(1.2);
+    color: #ff5757; /* Vermelho claro */
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+.footer {
+    background-color: #1a1a2e;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 1em;
+}
+
+.fullscreen-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.fullscreen-content {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-live-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e94560;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.close-live-button:hover {
+    background-color: #c5344f;
+}
+
+
+/* Estilo da imagem de visualização */
+
+.viewer-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+}
+
+.viewer-content {
+    position: relative;
+    width: 80%;
+    height: 80%;
+}
+
+#viewer3D {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 0; /* Para ficar abaixo dos botões */
+}
+
+.close-viewer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 2; /* Sobrepõe o visualizador */
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    z-index: 2; /* Sobrepõe o visualizador */
+}
+
+.links a {
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.links a:hover {
+    background-color: #0056b3;
+}
+
+#enterVR {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+#enterVR:hover {
+    background-color: #0056b3;
+}
+
+/* Post geral */
+.unidade-post {
+    margin: 8px 0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+#imageToggle {
+    width: 100%; /* Ajusta à largura da div */
+    height: auto; /* Mantém a proporção da imagem */
+    transition: opacity 0.5s ease-in-out; /* Transição suave */
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0; /* Oculta a imagem durante a transição */
+}
+
+
+/* Contêiner para imagem inicial ou iframe */
+.unidade-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 550px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #000; /* Fundo preto para o iframe */
+    
+}
+
+.unidade-image-container img {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 1s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.unidade-image-container img.fade-out {
+    opacity: 0;
+    transform: scale(1.1); /* Efeito de zoom ao sair */
+}
+
+.unidade-image-container img.fade-in {
+    opacity: 1;
+}
+
+/* QR Code Overlay */
+.unidade-qrcode-overlay {
+    position: absolute;
+    top: 10px; /* Ajusta a posição no topo */
+    right: 10px; /* Ajusta a posição à direita */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin-left: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    z-index: 10; /* Garante que fique sobre o iframe */
+    max-width: 160px; /* Limita o tamanho do QR Code */
+}
+
+.unidade-qrcode-overlay img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+}
+
+.unidade-qrcode-overlay p {
+    font-size: 12px;
+    color: #333;
+    text-align: center;
+}
+
+/* Animações para transição */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+/* Animações */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Modal */
+.fullscreen-overlay-comunicado {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s;
+}
+
+.fullscreen-content-comunicado {
+    position: relative;
+    text-align: center;
+}
+
+.close-comunicado-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e94560;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.close-comunicado-button:hover {
+    background-color: #c5344f;
+}
+
+.sidebar-footer {
+    display: flex;
+    flex-direction: column; /* Permite empilhar os elementos */
+    align-items: center;
+    justify-content: center;
+    height: calc(280px - var(--header-height) - var(--footer-height)); /* Espaço disponível para a imagem */
+    overflow: hidden; /* Esconde conteúdo extra se necessário */
+}
+
+.sidebar-footer .scrolling {
+    width: 100px;
+    height: 100px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.sidebar-footer .scrolling:active {
+    transform: scale(1.3) rotate(20deg); /* Aumenta e gira ao clicar */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra para realce */
+    filter: brightness(1.2); /* Aumenta o brilho */
+}
+
+
+.floating-image {
+    position: absolute; /* Permite que a imagem flutue por cima */
+    top: 94%; /* Centraliza verticalmente */
+    left: 10%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta a posição para o centro exato */
+    width: 150px; /* Tamanho da imagem */
+    animation: float 3s ease-in-out infinite; /* Animação de flutuação */
+    z-index: 10; /* Garante que fique acima de outras divs */
+    pointer-events: none; /* Evita interação com o mouse */
+}
+
+/* Animação de flutuação */
+@keyframes float {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(-10px);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateY(10px);
+    }
+}
+
+/* Fundo ou sidebar */
+.sidebar-footer {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Exemplo de altura */
+    background: linear-gradient(to right, #2F3B41, #4dc9f7); /* Fundo de exemplo */
+    overflow: hidden; /* Garante que a imagem não ultrapasse o contêiner */
+}
+
+/* Estilo básico para a imagem */
+#logoImage {
+    height: 28px; /* Tamanho definido */
+    vertical-align: middle;
+    margin-top: -8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    filter: brightness(1.2); /* Aumenta o brilho */
+    animation: futuristEffect 1.5s infinite;
+    transform: scale(1.1); /* Amplia levemente a imagem */
+    opacity: 0.95; /* Torna a imagem ligeiramente mais translúcida */
+}
+
+/* Animação de brilho futurista */
+@keyframes futuristEffect {
+    0% {
+        filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.5)) 
+                drop-shadow(0 0 10px rgba(0, 255, 255, 0.7));
+    }
+    50% {
+        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 1)) 
+                drop-shadow(0 0 15px rgba(0, 170, 255, 0.9));
+    }
+    100% {
+        filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.5)) 
+                drop-shadow(0 0 10px rgba(0, 255, 255, 0.7));
+    }
+}
+
